@@ -12,6 +12,10 @@ pipeline {
         JOGET_PASSWORD = 'admin'
     }
 
+    triggers {
+        githubPush()
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -27,7 +31,7 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                sh "mvn clean install -f ${params.PLUGIN_NAME}/pom.xml"
+                bat "mvn clean install -f ${params.PLUGIN_NAME}/pom.xml"
             }
         }
 
@@ -35,7 +39,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh """
+                        bat """
                             docker cp ${params.PLUGIN_NAME}/target/${params.PLUGIN_NAME}.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
                             docker restart ${DOCKER_CONTAINER}
                         """
@@ -51,9 +55,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        // Wait for Joget to restart and deploy the plugin
                         sleep(30)
-                        sh """
+                        bat """
                             docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
                         """
                         echo 'Plugin deployment verified successfully.'
@@ -61,6 +64,24 @@ pipeline {
                         error 'Plugin deployment verification failed.'
                     }
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo 'This will always run'
+            }
+        }
+        success {
+            script {
+                echo 'This will run only if the pipeline succeeds'
+            }
+        }
+        failure {
+            script {
+                echo 'This will run only if the pipeline fails'
             }
         }
     }
