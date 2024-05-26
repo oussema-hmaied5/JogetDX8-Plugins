@@ -9,13 +9,13 @@ pipeline {
         DOCKER_CONTAINER = 'Joget-DX8'
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
-        JOGET_PASSWORD = 'admin'
+        JOGET_PASSWORD = 'admin'  
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/oussema-hmaied5/JogetDX8-Plugins'
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Oussema-hmaied5/JogetDX8-Plugins.git'
             }
         }
 
