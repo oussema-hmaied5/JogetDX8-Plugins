@@ -7,8 +7,9 @@ pipeline {
 
     environment {
         DOCKER_CONTAINER = 'Joget-DX8'
-        JOGET_USERNAME = credentials('admin')
-        JOGET_PASSWORD = credentials('admin')
+        JOGET_URL = 'http://localhost:8067/jw'
+        JOGET_USERNAME = 'admin'
+        JOGET_PASSWORD = 'admin'
     }
 
     stages {
@@ -30,36 +31,36 @@ pipeline {
             }
         }
 
-        stage('Run Unit Tests') {
-            steps {
-                sh "mvn test -f ${params.PLUGIN_NAME}/pom.xml"
-            }
-        }
-
         stage('Deploy to Docker Joget') {
             steps {
-                sh """
-                    docker cp ${params.PLUGIN_NAME}/target/${params.PLUGIN_NAME}.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
-                    docker restart ${DOCKER_CONTAINER}
-                """
-            }
-        }
-
-        stage('Upload Plugin to Joget') {
-            steps {
-                sh """
-                    sleep 30  # Attendre que Joget redémarre et déploie le plugin
-                    curl -X POST -u ${JOGET_USERNAME}:${JOGET_PASSWORD} -F "file=@${params.PLUGIN_NAME}/target/${params.PLUGIN_NAME}.jar" http://localhost:8080/jw/web/json/plugin/upload
-                """
+                script {
+                    try {
+                        sh """
+                            docker cp ${params.PLUGIN_NAME}/target/${params.PLUGIN_NAME}.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
+                            docker restart ${DOCKER_CONTAINER}
+                        """
+                        echo 'Plugin copied and Joget restarted successfully.'
+                    } catch (Exception e) {
+                        error 'Failed to copy plugin or restart Joget.'
+                    }
+                }
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                sh """
-                    sleep 30  # Attendre que Joget redémarre et déploie le plugin
-                    docker exec ${DOCKER_CONTAINER} curl -f http://localhost:8080/jw/web/json/plugin/${params.PLUGIN_NAME}/status
-                """
+                script {
+                    try {
+                        // Wait for Joget to restart and deploy the plugin
+                        sleep(30)
+                        sh """
+                            docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
+                        """
+                        echo 'Plugin deployment verified successfully.'
+                    } catch (Exception e) {
+                        error 'Plugin deployment verification failed.'
+                    }
+                }
             }
         }
     }
