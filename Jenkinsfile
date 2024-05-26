@@ -9,7 +9,7 @@ pipeline {
         DOCKER_CONTAINER = 'Joget-DX8'
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
-        JOGET_PASSWORD = 'admin'  
+        JOGET_PASSWORD = 'admin'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Set up Java') {
             steps {
-                sh 'java -version'
+                bat 'java -version'
             }
         }
 
