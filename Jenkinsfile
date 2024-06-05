@@ -47,7 +47,38 @@ pipeline {
             }
         }
 
-  
+        stage('Deploy to Docker Joget') {
+            steps {
+                script {
+                    try {
+                        bat """
+                            docker cp ${params.PLUGIN_NAME}\\target\\${params.PLUGIN_NAME}-0.0.1-SNAPSHOT.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
+                            docker restart ${DOCKER_CONTAINER}
+                        """
+                        echo 'Plugin copied and Joget restarted successfully.'
+                    } catch (Exception e) {
+                        error 'Failed to copy plugin or restart Joget.'
+                    }
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    try {
+                        sleep(time: 30, unit: "SECONDS")
+                        bat """
+                            docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
+                        """
+                        echo 'Plugin deployment verified successfully.'
+                    } catch (Exception e) {
+                        error 'Plugin deployment verification failed.'
+                    }
+                }
+            }
+        }
+    }
 
     post {
         always {
