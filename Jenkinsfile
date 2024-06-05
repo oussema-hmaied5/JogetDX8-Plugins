@@ -32,7 +32,7 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                bat "mvn clean install -f ${params.PLUGIN_NAME}/pom.xml"
+                bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml" // Added -X for debug output
             }
         }
 
