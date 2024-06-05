@@ -31,10 +31,14 @@ pipeline {
         }
 
         stage('Build with Maven') {
-            steps {
-                bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml" // Added -X for debug output
-            }
-        }
+                   steps {
+                       script {
+                           withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
+                               powershell "mvn clean install -X -s ${env.MAVEN_SETTINGS} -f ${params.PLUGIN_NAME}/pom.xml"
+                           }
+                       }
+                   }
+               }
 
         stage('Deploy to Docker Joget') {
             steps {
