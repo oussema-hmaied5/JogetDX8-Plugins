@@ -10,7 +10,6 @@ pipeline {
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
-        MAVEN_SETTINGS = 'maven-settings'
     }
 
     triggers {
