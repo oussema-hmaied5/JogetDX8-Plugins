@@ -30,14 +30,14 @@ pipeline {
         }
 
         stage('Build with Maven') {
-                   steps {
-                       script {
-                           withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
-                               powershell "mvn clean install -X -s ${env.MAVEN_SETTINGS} -f ${params.PLUGIN_NAME}/pom.xml"
-                           }
-                       }
-                   }
-               }
+            steps {
+                script {
+                    withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
+                        bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml"
+                    }
+                }
+            }
+        }
 
         stage('Deploy to Docker Joget') {
             steps {
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sleep(30)
+                        sleep(time: 30, unit: "SECONDS")
                         bat """
                             docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
                         """
