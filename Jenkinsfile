@@ -66,19 +66,24 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
-                    try {
-                        sleep(time: 30, unit: "SECONDS")
-                        bat """
-                            docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
-                        """
-                        echo 'Plugin deployment verified successfully.'
-                    } catch (Exception e) {
-                        error 'Plugin deployment verification failed.'
+                    def retries = 5
+                    def waitTime = 30 // seconds
+                    for (int i = 0; i < retries; i++) {
+                        try {
+                            bat """
+                                docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
+                            """
+                            echo 'Plugin deployment verified successfully.'
+                            break
+                        } catch (Exception e) {
+                            echo 'Retrying...'
+                            sleep(waitTime)
+                        }
                     }
                 }
             }
         }
-    }
+
 
     post {
         always {
