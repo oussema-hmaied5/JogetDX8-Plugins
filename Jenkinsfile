@@ -10,6 +10,8 @@ pipeline {
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
+        SONARQUBE_SERVER = 'http://localhost:9001' // Your SonarQube server URL
+        SONARQUBE_TOKEN = 'your_generated_token'  // Your SonarQube token
     }
 
     triggers {
@@ -47,6 +49,25 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'SonarQube Scanner' // Name of the SonarQube scanner tool installed in Jenkins
+            }
+            steps {
+                withSonarQubeEnv('SonarQube') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
+                    bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
         stage('Deploy to Docker Joget') {
             steps {
                 script {
@@ -63,27 +84,26 @@ pipeline {
             }
         }
 
-       stage('Verify Deployment') {
-           steps {
-               script {
-                   def retries = 5
-                   def waitTime = 30 // seconds
-                   for (int i = 0; i < retries; i++) {
-                       try {
-                           bat """
-                               docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
-                           """
-                           echo 'Plugin deployment verified successfully.'
-                           break
-                       } catch (Exception e) {
-                           echo 'Retrying...'
-                           sleep(waitTime)
-                       }
-                   }
-               }
-           }
-       }
-
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    def retries = 5
+                    def waitTime = 30 // seconds
+                    for (int i = 0; i < retries; i++) {
+                        try {
+                            bat """
+                                docker exec ${DOCKER_CONTAINER} curl -f ${JOGET_URL}/web/json/plugin/${params.PLUGIN_NAME}/status
+                            """
+                            echo 'Plugin deployment verified successfully.'
+                            break
+                        } catch (Exception e) {
+                            echo 'Retrying...'
+                            sleep(waitTime)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     post {
