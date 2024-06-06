@@ -54,7 +54,7 @@ pipeline {
                 scannerHome = tool 'SonarQube Scanner' // Name of the SonarQube scanner tool installed in Jenkins
             }
             steps {
-                withSonarQubeEnv('SonarQube') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
+                withSonarQubeEnv('sq1') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
                     bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
                 }
             }
