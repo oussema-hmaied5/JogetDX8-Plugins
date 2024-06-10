@@ -1,68 +1,37 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'PLUGIN_NAME', defaultValue: 'form_repeater', description: 'Name of the plugin to test and deploy')
-    }
-
     environment {
-        DOCKER_CONTAINER = 'Joget-DX8'
-        JOGET_URL = 'http://localhost:8067/jw'
-        JOGET_USERNAME = 'admin'
-        JOGET_PASSWORD = 'admin'
-        SONARQUBE_SERVER = 'http://localhost:9000'
-    }
-
-    triggers {
-        githubPush()
+        DOCKER_CONTAINER = 'joget-container'
+        JOGET_URL = 'http://localhost:8080/jw'
+        SONAR_HOST_URL = 'http://localhost:9000'
+        SONAR_TOKEN = credentials('sonar-token')
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Oussema-hmaied5/JogetDX8-Plugins.git'
-            }
-        }
-
-        stage('Set up Java') {
-            steps {
-                bat 'java -version'
-            }
-        }
-
-        stage('Build with Maven') {
+        stage('Build') {
             steps {
                 script {
-                    withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
-                        bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml"
+                    bat 'mvn clean install'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat "mvn sonar:sonar -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_TOKEN}"
+                }
+            }
+            post {
+                success {
+                    script {
+                        echo 'SonarQube analysis completed successfully'
                     }
                 }
-            }
-        }
-
-        stage('Verify Build Output') {
-            steps {
-                script {
-                    bat "dir ${params.PLUGIN_NAME}\\target"
-                }
-            }
-        }
-
-        stage('Build & SonarQube Analysis') {
-            steps {
-                script {
-                    def retries = 3
-                    def waitTime = 60 // seconds
-                    for (int i = 0; i < retries; i++) {
-                        try {
-                            withSonarQubeEnv('sq1') {
-                                bat 'mvn clean package sonar:sonar'
-                            }
-                            break
-                        } catch (Exception e) {
-                            echo "SonarQube analysis failed. Retrying in ${waitTime} seconds..."
-                            sleep waitTime
-                        }
+                failure {
+                    script {
+                        echo 'SonarQube analysis failed'
                     }
                 }
             }
