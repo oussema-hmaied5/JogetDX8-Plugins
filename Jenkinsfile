@@ -50,8 +50,20 @@ pipeline {
 
         stage('Build & SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sq1') {
-                    bat 'mvn clean package sonar:sonar'
+                script {
+                    def retries = 3
+                    def waitTime = 60 // seconds
+                    for (int i = 0; i < retries; i++) {
+                        try {
+                            withSonarQubeEnv('sq1') {
+                                bat 'mvn clean package sonar:sonar'
+                            }
+                            break
+                        } catch (Exception e) {
+                            echo "SonarQube analysis failed. Retrying in ${waitTime} seconds..."
+                            sleep waitTime
+                        }
+                    }
                 }
             }
         }
@@ -94,7 +106,7 @@ pipeline {
                             break
                         } catch (Exception e) {
                             echo 'Retrying...'
-                            sleep(waitTime)
+                            sleep waitTime
                         }
                     }
                 }
