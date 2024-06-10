@@ -1,41 +1,72 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'PLUGIN_NAME', defaultValue: 'form_repeater', description: 'Name of the plugin to test and deploy')
+    }
+
     environment {
-        DOCKER_CONTAINER = 'joget-container'
-        JOGET_URL = 'http://localhost:8080/jw'
-        SONAR_HOST_URL = 'http://localhost:9000'
+        DOCKER_CONTAINER = 'Joget-DX8'
+        JOGET_URL = 'http://localhost:8067/jw'
+        SONARQUBE_SERVER = 'http://localhost:9000'
         SONAR_TOKEN = credentials('sonar-token')
+
+    }
+
+    triggers {
+        githubPush()
     }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Oussema-hmaied5/JogetDX8-Plugins.git'
+            }
+        }
+
+        stage('Set up Java') {
+            steps {
+                bat 'java -version'
+            }
+        }
+
+        stage('Build with Maven') {
             steps {
                 script {
-                    bat 'mvn clean install'
+                    withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
+                        bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml"
+                    }
                 }
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Verify Build Output') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat "mvn sonar:sonar -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_TOKEN}"
-                }
-            }
-            post {
-                success {
-                    script {
-                        echo 'SonarQube analysis completed successfully'
-                    }
-                }
-                failure {
-                    script {
-                        echo 'SonarQube analysis failed'
-                    }
+                script {
+                    bat "dir ${params.PLUGIN_NAME}\\target"
                 }
             }
         }
+
+       stage('SonarQube Analysis') {
+                   steps {
+                       withSonarQubeEnv('SonarQube') {
+                           bat "mvn sonar:sonar -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_TOKEN}"
+                       }
+                   }
+                   post {
+                       success {
+                           script {
+                               echo 'SonarQube analysis completed successfully'
+                           }
+                       }
+                       failure {
+                           script {
+                               echo 'SonarQube analysis failed'
+                           }
+                       }
+                   }
+               }
 
         stage('Quality Gate') {
             steps {
