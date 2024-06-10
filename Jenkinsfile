@@ -56,7 +56,7 @@ pipeline {
             }
             steps {
                     withSonarQubeEnv('SonarQube') {
-                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
+                bat "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
                     }
 
             }
