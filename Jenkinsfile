@@ -47,15 +47,14 @@ pipeline {
                 }
             }
         }
-        stage("build & SonarQube analysis") {
-              agent any
-                    steps {
-                      withSonarQubeEnv('sq1') {
-                        sh 'mvn clean package sonar:sonar'
-                      }
-                    }
-               }
 
+        stage('Build & SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sq1') {
+                    bat 'mvn clean package sonar:sonar'
+                }
+            }
+        }
 
         stage('Quality Gate') {
             steps {
