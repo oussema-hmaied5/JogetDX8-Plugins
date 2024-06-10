@@ -8,9 +8,9 @@ pipeline {
     environment {
         DOCKER_CONTAINER = 'Joget-DX8'
         JOGET_URL = 'http://localhost:8067/jw'
+        JOGET_USERNAME = 'admin'
+        JOGET_PASSWORD = 'admin'
         SONARQUBE_SERVER = 'http://localhost:9000'
-        SONAR_TOKEN = credentials('sonar-token')
-
     }
 
     triggers {
@@ -48,25 +48,18 @@ pipeline {
             }
         }
 
-       stage('SonarQube Analysis') {
-                   steps {
-                       withSonarQubeEnv('SonarQube') {
-                           bat "mvn sonar:sonar -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_TOKEN}"
-                       }
-                   }
-                   post {
-                       success {
-                           script {
-                               echo 'SonarQube analysis completed successfully'
-                           }
-                       }
-                       failure {
-                           script {
-                               echo 'SonarQube analysis failed'
-                           }
-                       }
-                   }
-               }
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'SonarQube Scanner'
+            }
+            steps {
+                withCredentials([string(credentialsId: 'Sonar-token', variable: 'SONARQUBE_TOKEN')]) {
+                    withSonarQubeEnv('SonarQube') { //
+                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
+                    }
+                }
+            }
+        }
 
         stage('Quality Gate') {
             steps {
@@ -106,7 +99,7 @@ pipeline {
                             break
                         } catch (Exception e) {
                             echo 'Retrying...'
-                            sleep waitTime
+                            sleep(waitTime)
                         }
                     }
                 }
