@@ -10,8 +10,7 @@ pipeline {
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
-        SONARQUBE_SERVER = 'http://localhost:9099' // Your SonarQube server URL
-        SONARQUBE_TOKEN = 'your_generated_token'  // Your SonarQube token
+        SONARQUBE_SERVER = 'http://localhost:9000' // Your SonarQube server URL
     }
 
     triggers {
@@ -55,7 +54,7 @@ pipeline {
                   }
                   steps {
                       withCredentials([string(credentialsId: 'Sonar-token', variable: 'SONARQUBE_TOKEN')]) {
-                          withSonarQubeEnv('SonarQube') { //
+                          withSonarQubeEnv('SonarQube') {
                               bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
                           }
                       }
