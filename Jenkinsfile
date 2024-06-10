@@ -47,19 +47,14 @@ pipeline {
                 }
             }
         }
-
-        stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarQube Scanner'
-            }
-            steps {
-                withCredentials([string(credentialsId: 'jenkins-sonarQube', variable: 'SONARQUBE_TOKEN')]) {
-                    withSonarQubeEnv('sq1') { //
-                        bat "$scannerHome/bin/sonar-scanner -Dsonar.projectKey=$params.PLUGIN_NAME -Dsonar.sources=. -Dsonar.host.url=$SONARQUBE_SERVER -Dsonar.login=$SONARQUBE_TOKEN"
+        stage("build & SonarQube analysis") {
+              agent any
+                    steps {
+                      withSonarQubeEnv('sq1') {
+                        sh 'mvn clean package sonar:sonar'
+                      }
                     }
-                }
-            }
-        }
+
 
         stage('Quality Gate') {
             steps {
