@@ -10,7 +10,7 @@ pipeline {
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
-        SONARQUBE_SERVER = 'http://localhost:9000' // SonarQube server URL
+        SONARQUBE_SERVER = 'http://localhost:9000' 
     }
 
     triggers {
@@ -48,14 +48,27 @@ pipeline {
             }
         }
 
+        stage('Check SonarQube Server') {
+            steps {
+                script {
+                    try {
+                        bat "curl -f ${SONARQUBE_SERVER}"
+                        echo 'SonarQube server is accessible.'
+                    } catch (Exception e) {
+                        error 'SonarQube server is not accessible.'
+                    }
+                }
+            }
+        }
+
         stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool 'SonarQube Scanner'
+                scannerHome = tool 'SonarQube Scanner' // Name of the SonarQube scanner tool installed in Jenkins
             }
             steps {
-                withCredentials([string(credentialsId: 'jenkins-sonarQube', variable: 'SONARQUBE_TOKEN')]) {
-                    withSonarQubeEnv('sq1') { // 
-                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
+                withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONARQUBE_TOKEN')]) {
+                    withSonarQubeEnv('sq1') { // 'sq1' is the name of the SonarQube server configured in Jenkins
+                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN} -X"
                     }
                 }
             }
