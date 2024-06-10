@@ -51,14 +51,20 @@ pipeline {
         stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner'
-                SONARQUBE_TOKEN = credentials('Sonar-token')
-
+                SONARQUBE_USERNAME = 'admin'
+                SONARQUBE_PASSWORD = 'admin1' 
             }
             steps {
-                    withSonarQubeEnv('SonarQube') {
-                bat "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
-                    }
-
+                withSonarQubeEnv('SonarQube') {
+                    bat """
+                        ${scannerHome}/bin/sonar-scanner -X \
+                        -Dsonar.projectKey=${params.PLUGIN_NAME} \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=${SONARQUBE_SERVER} \
+                        -Dsonar.login=${SONARQUBE_USERNAME} \
+                        -Dsonar.password=${SONARQUBE_PASSWORD}
+                    """
+                }
             }
         }
 
