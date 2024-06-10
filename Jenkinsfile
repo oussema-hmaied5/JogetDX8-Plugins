@@ -10,8 +10,7 @@ pipeline {
         JOGET_URL = 'http://localhost:8067/jw'
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
-        SONARQUBE_SERVER = 'http://localhost:9099' // Your SonarQube server URL
-        SONARQUBE_TOKEN = 'your_generated_token'  // Your SonarQube token
+        SONARQUBE_SERVER = 'http://localhost:9099' // SonarQube server URL
     }
 
     triggers {
@@ -49,18 +48,18 @@ pipeline {
             }
         }
 
-         stage('SonarQube Analysis') {
-                  environment {
-                      scannerHome = tool 'SonarQube Scanner' // Name of the SonarQube scanner tool installed in Jenkins
-                  }
-                  steps {
-                      withCredentials([string(credentialsId: 'jenkins-sonarQube', variable: 'SONARQUBE_TOKEN')]) {
-                          withSonarQubeEnv('sq1') { // 'sq1' is the name of the SonarQube server configured in Jenkins
-                              bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
-                          }
-                      }
-                  }
-              }
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'SonarQube Scanner' // Name of the SonarQube scanner tool installed in Jenkins
+            }
+            steps {
+                withCredentials([string(credentialsId: 'jenkins-sonarQube', variable: 'SONARQUBE_TOKEN')]) {
+                    withSonarQubeEnv('sq1') { // 'sq1' is the name of the SonarQube server configured in Jenkins
+                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
+                    }
+                }
+            }
+        }
 
         stage('Quality Gate') {
             steps {
