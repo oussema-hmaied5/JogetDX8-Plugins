@@ -48,13 +48,17 @@ pipeline {
             }
         }
 
-      stage('SonarQube analysis') {
-                 steps {
-                     withSonarQubeEnv('SonarQube') {
-                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=."
-                     }
-                 }
-             }
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'SonarScanner'
+            }
+           steps {
+                  withSonarQubeEnv('SonarQube') {
+                      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=."
+                  }
+              }
+            }
+
 
 
         stage('Quality Gate') {
