@@ -54,7 +54,7 @@ pipeline {
             }
            steps {
                   withSonarQubeEnv('SonarQube') {
-                    bat "${scannerHome}\\bin\\sonar-scanner.bat -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.projectKey=my-project-key -Dsonar.sources=."
+                   bat "mvn sonar:sonar -Dsonar.login=admin -Dsonar=password=admin1"
                   }
               }
             }
