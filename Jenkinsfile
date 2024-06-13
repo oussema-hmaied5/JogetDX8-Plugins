@@ -52,25 +52,30 @@
                      environment {
                          scannerHome = tool 'SonarScanner'
                      }
-                     steps {
-                         script {
-                             withSonarQubeEnv('SonarQube') {
-                                 bat """
-                                     set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
-                                     mvn sonar:sonar \
-                                         -Dsonar.login=admin \
-                                         -Dsonar.password=admin1 \
-                                         -Dsonar.projectKey=${params.PLUGIN_NAME} \
-                                         -Dsonar.host.url=${SONARQUBE_SERVER} \
-                                         -Dsonar.java.binaries=${params.PLUGIN_NAME}/target/classes \
-                                         -Dsonar.java.test.binaries=${params.PLUGIN_NAME}/target/test-classes \
-                                         -Dsonar.junit.reportPaths=${params.PLUGIN_NAME}/target/surefire-reports \
-                                         -Dsonar.jacoco.reportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml
-                                 """
-                             }
-                         }
-                     }
-                 }
+                   stage('SonarQube Analysis') {
+                              environment {
+                                  scannerHome = tool 'SonarScanner'
+                              }
+                              steps {
+                                  script {
+                                      withSonarQubeEnv('SonarQube') {
+                                          bat """
+                                              set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
+                                              mvn sonar:sonar \
+                                                  -Dsonar.login=admin \
+                                                  -Dsonar.password=admin1 \
+                                                  -Dsonar.projectKey=${params.PLUGIN_NAME} \
+                                                  -Dsonar.host.url=${SONARQUBE_SERVER} \
+                                                  -Dsonar.java.binaries=${params.PLUGIN_NAME}/target/classes \
+                                                  -Dsonar.java.test.binaries=${params.PLUGIN_NAME}/target/test-classes \
+                                                  -Dsonar.junit.reportPaths=${params.PLUGIN_NAME}/target/surefire-reports \
+                                                  -Dsonar.jacoco.reportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml
+                                          """
+                                      }
+                                  }
+                              }
+                          }
+
 
                  stage("Quality Gate") {
                      steps {
