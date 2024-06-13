@@ -60,14 +60,18 @@
                   }
                 }
 
-           stage("Quality Gate") {
-                steps {
-                  timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
-                  }
-                }
-              }
-
+         stage("Quality Gate") {
+             steps {
+                 timeout(time: 30, unit: 'MINUTES') {
+                     script {
+                         def qg = waitForQualityGate()
+                         if (qg.status != 'OK') {
+                             error "Failed to pass the quality gate. Status: ${qg.status}"
+                         }
+                     }
+                 }
+             }
+         }
 
 
             stage('Deploy to Docker Joget') {
