@@ -48,17 +48,13 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarScanner'
-            }
-            steps {
-                    withSonarQubeEnv('SonarQube') {
-                        bat "\"${scannerHome}\\bin\\sonar-scanner\" -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN}"
-                    }
-                }
-            }
-        
+      stage('SonarQube analysis') {
+                 steps {
+                     withSonarQubeEnv('SonarQube') {
+                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-project-key -Dsonar.sources=."
+                     }
+                 }
+             }
 
 
         stage('Quality Gate') {
