@@ -52,11 +52,7 @@
                      environment {
                          scannerHome = tool 'SonarScanner'
                      }
-                   stage('SonarQube Analysis') {
-                              environment {
-                                  scannerHome = tool 'SonarScanner'
-                              }
-                              steps {
+                  steps {
                                   script {
                                       withSonarQubeEnv('SonarQube') {
                                           bat """
@@ -75,7 +71,6 @@
                                   }
                               }
                           }
-
 
                  stage("Quality Gate") {
                      steps {
