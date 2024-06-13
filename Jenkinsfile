@@ -52,13 +52,21 @@
                 environment {
                     scannerHome = tool 'SonarScanner'
                 }
-              steps {
-                      bat """
-                          set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
-                          mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -f ${params.PLUGIN_NAME}/pom.xml
-                      """
-                  }
+                steps {
+                    script {
+                        try {
+                            bat """
+                                set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
+                                mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -f ${params.PLUGIN_NAME}/pom.xml
+                            """
+                        } catch (Exception e) {
+                            echo "Failed to execute SonarQube analysis: ${e.message}"
+                            throw e
+                        }
+                    }
                 }
+            }
+
 
          stage("Quality Gate") {
              steps {
