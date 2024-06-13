@@ -61,19 +61,21 @@
                 }
 
 
+     stage('Quality Gate') {
+         steps {
+             script {
+                 def qg = waitForQualityGate() // Attend la passerelle de qualité (Quality Gate)
+                 if (qg.status != 'OK') {
+                     error "Quality Gate failed: ${qg.status}"
+                 } else {
+                     echo "Quality Gate passed: ${qg.status}"
+                 }
+             }
+         }
+     }
 
-        stage('Quality Gate') {
-            steps {
-                script {
-                    timeout(time: 1, unit: 'HOURS') {
-                        def qg = waitForQualityGate() // Attend la passerelle de qualité (Quality Gate)
-                        if (qg.status != 'OK') {
-                            error "Quality Gate failed: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }
+
+
             stage('Deploy to Docker Joget') {
                 steps {
                     script {
