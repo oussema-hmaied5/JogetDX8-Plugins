@@ -71,7 +71,6 @@
 
             stage("Quality Gate") {
                 steps {
-                    timeout(time: 1, unit: 'HOURS') {
                         script {
                             def qg = waitForQualityGate()
                             if (qg.status != 'OK') {
@@ -81,7 +80,7 @@
                             echo "Test Passed Succesfully ! Status : ${qg.status}"}
                         }
                     }
-                }
+                
             }
 
             stage('Deploy to Docker Joget') {
