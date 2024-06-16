@@ -50,23 +50,24 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarScanner'
-            }
             steps {
                 script {
-                    try {
-                        bat """
-                            set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
-                            mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.coverage.jacoco.xmlReportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml -f ${params.PLUGIN_NAME}/pom.xml
-                        """
-                    } catch (Exception e) {
-                        echo "Failed to execute SonarQube analysis: ${e.message}"
-                        throw e
+                    // Utilisation du wrapper withSonarQubeEnv
+                    withSonarQubeEnv('SonarQube') {
+                        try {
+                            bat """
+                                set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
+                                mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.coverage.jacoco.xmlReportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml -f ${params.PLUGIN_NAME}/pom.xml
+                            """
+                        } catch (Exception e) {
+                            echo "Failed to execute SonarQube analysis: ${e.message}"
+                            throw e
+                        }
                     }
                 }
             }
         }
+
 
         stage("Quality Gate") {
             steps {
