@@ -68,36 +68,20 @@
                 }
             }
 
-stage("Quality Gate") {
-    steps {
-        timeout(time: 30, unit: 'MINUTES') {
-            script {
-                def waitForSonarQubeTask = {
-                    def taskStatus = ''
-                    def maxRetries = 10
-                    def retryCount = 0
-                    while (taskStatus != 'SUCCESS' && retryCount < maxRetries) {
-                        def response = waitForQualityGate()
-                        taskStatus = response.status
-                        if (taskStatus == 'PENDING') {
-                            echo "SonarQube task is still pending. Waiting to retry (${retryCount + 1}/${maxRetries})..."
-                            sleep 60  // Wait for a minute before retrying
-                            retryCount++
-                        } else if (taskStatus == 'ERROR') {
-                            error "SonarQube task encountered an error. Status: ${taskStatus}"
+
+            stage("Quality Gate") {
+                steps {
+                        script {
+                            def qg = waitForQualityGate()
+                            if (qg.status != 'OK') {
+                                error "Failed to pass the quality gate. Status: ${qg.status}"
+                            }
+                            else {
+                            echo "Test Passed Succesfully ! Status : ${qg.status}"}
                         }
                     }
-                    if (taskStatus != 'SUCCESS') {
-                        error "SonarQube task did not complete successfully within the specified retries. Status: ${taskStatus}"
-                    }
-                }
 
-                waitForSonarQubeTask()
             }
-        }
-    }
-}
-
 
             stage('Deploy to Docker Joget') {
                 steps {
