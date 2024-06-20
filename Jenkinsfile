@@ -107,7 +107,7 @@ pipeline {
                         try {
                             def response = bat(
                                 script: """
-                                    curl -s -u ${JOGET_USERNAME}:${JOGET_PASSWORD} "${JOGET_URL}/web/json/plugin/list?start=0^&rows=200"
+                                    curl -s -u ${JOGET_USERNAME}:${JOGET_PASSWORD} "${JOGET_URL}/web/json/plugin/list?start=0&rows=200"
                                 """,
                                 returnStdout: true
                             ).trim()
