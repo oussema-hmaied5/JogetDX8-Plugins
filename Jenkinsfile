@@ -96,7 +96,6 @@ pipeline {
             }
         }
 
-        stages {
                stage('Check Plugin Deployment') {
                    steps {
                        script {
@@ -146,7 +145,7 @@ pipeline {
                        }
                    }
                }
-           }
+               }
 
     post {
         always {
