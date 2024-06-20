@@ -96,56 +96,56 @@ pipeline {
             }
         }
 
-               stage('Check Plugin Deployment') {
-                   steps {
-                       script {
-                           def retries = 5
-                           def waitTime = 30 // seconds
-                           def pluginFound = false
+        stage('Check Plugin Deployment') {
+                    steps {
+                        script {
+                            def retries = 5
+                            def waitTime = 30 // seconds
+                            def pluginFound = false
 
-                           for (int i = 0; i < retries; i++) {
-                               try {
-                                   def response = sh(
-                                       script: """
-                                           curl -s -u ${JOGET_USERNAME}:${JOGET_PASSWORD} "${JOGET_URL}/web/json/plugin/list?start=0&rows=200"
-                                       """,
-                                       returnStdout: true
-                                   ).trim()
+                            for (int i = 0; i < retries; i++) {
+                                try {
+                                    def response = bat(
+                                        script: """
+                                            curl -s -u ${JOGET_USERNAME}:${JOGET_PASSWORD} "${JOGET_URL}/web/json/plugin/list?start=0&rows=200"
+                                        """,
+                                        returnStdout: true
+                                    ).trim()
 
-                                   // Debugging: Print the raw response
-                                   echo "Raw response: ${response}"
+                                    // Debugging: Print the raw response
+                                    echo "Raw response: ${response}"
 
-                                   if (response == null || response.trim().isEmpty()) {
-                                       error "Empty response from server"
-                                   }
+                                    if (response == null || response.trim().isEmpty()) {
+                                        error "Empty response from server"
+                                    }
 
-                                   // Parse JSON response
-                                   def jsonResponse = readJSON text: response
+                                    // Parse JSON response
+                                    def jsonResponse = readJSON text: response
 
-                                   // Extract plugin IDs
-                                   def pluginIds = jsonResponse.data.collect { it.id }
+                                    // Extract plugin IDs
+                                    def pluginIds = jsonResponse.data.collect { it.id }
 
-                                   if (pluginIds.contains(params.PLUGIN_NAME)) {
-                                       echo "Plugin '${params.PLUGIN_NAME}' found in Joget."
-                                       pluginFound = true
-                                       break
-                                   } else {
-                                       echo "Plugin '${params.PLUGIN_NAME}' not found in Joget. Retrying..."
-                                       sleep(waitTime)
-                                   }
-                               } catch (Exception e) {
-                                   echo "Failed to check plugin deployment: ${e.message}. Retrying..."
-                                   sleep(waitTime)
-                               }
-                           }
+                                    if (pluginIds.contains(params.PLUGIN_NAME)) {
+                                        echo "Plugin '${params.PLUGIN_NAME}' found in Joget."
+                                        pluginFound = true
+                                        break
+                                    } else {
+                                        echo "Plugin '${params.PLUGIN_NAME}' not found in Joget. Retrying..."
+                                        sleep(waitTime)
+                                    }
+                                } catch (Exception e) {
+                                    echo "Failed to check plugin deployment: ${e.message}. Retrying..."
+                                    sleep(waitTime)
+                                }
+                            }
 
-                           if (!pluginFound) {
-                               error "Plugin '${params.PLUGIN_NAME}' not deployed in Joget after multiple retries."
-                           }
-                       }
-                   }
-               }
-               }
+                            if (!pluginFound) {
+                                error "Plugin '${params.PLUGIN_NAME}' not deployed in Joget after multiple retries."
+                            }
+                        }
+                    }
+                }
+            }
 
     post {
         always {
