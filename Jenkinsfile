@@ -112,7 +112,21 @@ pipeline {
                                 returnStdout: true
                             ).trim()
 
-                            def jsonResponse = readJSON text: response
+                            // Debugging: Print the raw response
+                            echo "Raw response: ${response}"
+
+                            if (response == null || response.trim().isEmpty()) {
+                                error "Empty response from server"
+                            }
+
+                            // Validate JSON format
+                            def jsonResponse
+                            try {
+                                jsonResponse = readJSON text: response
+                            } catch (Exception e) {
+                                error "Invalid JSON response: ${e.message}"
+                            }
+
                             def plugins = jsonResponse?.data?.collect { it.id }
 
                             if (plugins.contains(params.PLUGIN_NAME)) {
