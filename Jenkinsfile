@@ -145,7 +145,6 @@ pipeline {
                         }
                     }
                 }
-            }
             */
              stage('Run UI Tests') {
                         steps {
@@ -154,6 +153,7 @@ pipeline {
                             }
                         }
                     }
+            }
 
     post {
         always {
