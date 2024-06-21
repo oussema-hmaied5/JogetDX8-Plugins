@@ -1,4 +1,4 @@
-package org.joget;
+package org.selenium;
 
 import org.joget.apps.form.model.Element;
 import org.joget.apps.form.model.FormBinder;
@@ -6,12 +6,12 @@ import org.joget.apps.form.model.FormData;
 import org.joget.apps.form.model.FormRowSet;
 import org.joget.apps.form.model.FormStoreBinder;
 
-public class FormRepeaterStoreBinderWrapper extends FormBinder implements FormStoreBinder {
-    private FormRepeater formRepeater;
+public class SubformRepeaterStoreBinderWrapper extends FormBinder implements FormStoreBinder {
+    private SubformRepeater subformRepeater;
     private FormStoreBinder storeBinder;
     
     public String getName() {
-        return "FormRepeaterStoreBinderWrapper";
+        return "SubformRepeaterStoreBinderWrapper";
     }
 
     public String getVersion() {
@@ -34,15 +34,15 @@ public class FormRepeaterStoreBinderWrapper extends FormBinder implements FormSt
         return "";
     }
     
-    public FormRepeaterStoreBinderWrapper (FormRepeater formRepeater, FormStoreBinder storeBinder) {
-        this.formRepeater = formRepeater;
+    public SubformRepeaterStoreBinderWrapper (SubformRepeater subformRepeater, FormStoreBinder storeBinder) {
+        this.subformRepeater = subformRepeater;
         this.storeBinder = storeBinder;
     }
 
     public FormRowSet store(Element element, FormRowSet rows, FormData formData) {
         if (rows != null && !rows.isEmpty()) {
             //store inner form/grid data
-            formRepeater.storeInnerData(rows);
+            subformRepeater.storeInnerData(rows);
         }
         
         if (rows != null) {    
@@ -51,7 +51,7 @@ public class FormRepeaterStoreBinderWrapper extends FormBinder implements FormSt
         
         if (rows != null && !rows.isEmpty()) {
             //execute addition form action for add mode equeal to show empty form on top or bottom
-            formRepeater.executeFormActionForDefaultAddForm(formData);
+            subformRepeater.executeFormActionForDefaultAddForm(formData);
         }
         
         return rows;

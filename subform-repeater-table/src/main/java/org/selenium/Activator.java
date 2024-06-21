@@ -1,4 +1,4 @@
-package org.joget;
+package org.selenium;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +14,7 @@ public class Activator implements BundleActivator {
         registrationList = new ArrayList<ServiceRegistration>();
 
         //Register plugin here
-        registrationList.add(context.registerService(FormRepeater.class.getName(), new FormRepeater(), null));
+        registrationList.add(context.registerService(SubformRepeater.class.getName(), new SubformRepeater(), null));
     }
 
     public void stop(BundleContext context) {

@@ -95,7 +95,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('Check Plugin Deployment') {
                     steps {
                         script {
@@ -146,6 +146,14 @@ pipeline {
                     }
                 }
             }
+            */
+             stage('Run UI Tests') {
+                        steps {
+                            script {
+                                bat "mvn clean test -f ui-tests/pom.xml"
+                            }
+                        }
+                    }
 
     post {
         always {

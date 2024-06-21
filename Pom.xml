@@ -11,5 +11,7 @@
     <modules>
         <module>form_repeater</module>
         <module>subform-repeater-table</module>
+        <module>ui-tests</module>
+
     </modules>
 </project>
