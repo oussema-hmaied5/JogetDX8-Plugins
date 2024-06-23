@@ -10,7 +10,7 @@
 
     <modules>
         <module>form_repeater</module>
-        <module>subform-repeater-table</module>
+        <module>SpreadSheet</module>
         <module>ui-tests</module>
 
     </modules>
