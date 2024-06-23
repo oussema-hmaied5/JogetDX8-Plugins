@@ -36,7 +36,7 @@ public class form_repeater {
         driver.findElement(By.name("submit")).click();
 
         // Naviguer vers l'application FormRepeater et tester sa fonctionnalité
-        driver.get("http://localhost:8067/jw/web/userview/FormRepeater_ID");
+        driver.get("http://localhost:8067/jw/web/userview/FormRepater_ID/Repeater_ID/_/ajout");
         WebElement repeaterElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("formRepeaterElementId")));
         assertEquals("Expected Text", repeaterElement.getText());
 
