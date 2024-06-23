@@ -14,7 +14,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Form_Repeater {
+public class form_repeater {
 
     private WebDriver driver;
 
