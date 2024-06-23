@@ -149,7 +149,7 @@ pipeline {
              stage('Run UI Tests') {
                         steps {
                             script {
-                        bat "mvn clean test -f ui-tests/pom.xml -Dtest=selenium.test.${params.PLUGIN_NAME}.*"
+                        bat "mvn clean test -f ui-tests/pom.xml -Dtest=selenium.test.${params.PLUGIN_NAME}"
                             }
                         }
                     }
