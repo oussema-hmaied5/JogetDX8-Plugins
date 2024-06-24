@@ -1,3 +1,4 @@
 selenium\test\form_repeater.class
-selenium\test\LoginTests.class
 selenium\test\SpreadSheet.class
+selenium\test\LoginTests.class
+selenium\test\BaseUITest.class

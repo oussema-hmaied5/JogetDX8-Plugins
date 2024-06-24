@@ -14,15 +14,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SpreadSheet {
-
-    private WebDriver driver;
-
-    @BeforeEach
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
-        driver = new ChromeDriver();
-    }
+public class SpreadSheet extends BaseUITest {
 
     @Test
     public void testFormRepeaterFunctionality() {
@@ -43,10 +35,4 @@ public class SpreadSheet {
         // Ajouter des assertions supplémentaires et des interactions avec les éléments du FormRepeater
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }
