@@ -10,6 +10,10 @@
 
     <modules>
         <module>form_repeater</module>
+        <module>bootstrap-steps-display</module>
+        <module>section-tabs</module>
+        <module>section-wizard</module>
+        <module>typeahead-multiselect-datalist-filter</module>
         <module>SpreadSheet</module>
         <module>ui-tests</module>
 

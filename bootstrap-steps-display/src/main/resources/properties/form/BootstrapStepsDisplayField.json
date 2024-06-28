@@ -1,0 +1,116 @@
+[
+   {
+      "title":"@@form.BootstrapStepsDisplayField.editBootstrapStepsDisplayField@@",
+      "properties":[
+         {
+            "name":"id",
+            "label":"@@form.selectbox.id@@",
+            "type":"autocomplete",
+            "required":"True",
+            "regex_validation":"^[a-zA-Z0-9_]+$",
+            "validation_message":"@@form.selectbox.invalidId@@",
+            "options_callback":"FormBuilder.getAllFieldOptions"
+         },
+         {
+            "name":"statusFieldId",
+            "label":"@@form.BootstrapStepsDisplayField.statusFieldID@@",
+            "type":"autocomplete",
+            "options_callback":"FormBuilder.getFieldOptions",
+            "required" : "true"
+         },
+         {
+            "name" : "scale",
+            "label" : "@@form.BootstrapStepsDisplayField.scale@@",
+            "type" : "textfield",
+            "value" : "1.5",
+            "required" : "true"
+         },
+         {
+            "name":"options",
+            "label":"@@form.BootstrapStepsDisplayField.options@@",
+            "description":"@@form.BootstrapStepsDisplayField.options.desc@@",
+            "type":"grid",
+            "columns":[
+               {
+                  "key":"numbering",
+                  "label":"@@form.BootstrapStepsDisplayField.numbering@@"
+               },
+               {
+                  "key":"icon",
+                  "label":"@@form.BootstrapStepsDisplayField.icon@@"
+               },
+               {
+                  "key":"value",
+                  "label":"@@form.selectbox.value@@"
+               },
+               {
+                  "key":"label",
+                  "label":"@@form.selectbox.label@@"
+               }
+            ]
+         },
+         {
+            "name":"theme",
+            "label":"@@form.BootstrapStepsDisplayField.theme@@",
+            "type":"selectbox",
+            "value" : "2",
+            "options":[
+                {
+                    "value":"2",
+                    "label": "@@form.BootstrapStepsDisplayField.icon@@"
+                },
+                {
+                    "value":"1",
+                    "label":"@@form.BootstrapStepsDisplayField.numbering@@"
+                }
+            ]
+         },
+         {
+            "name":"connector",
+            "label":"@@form.BootstrapStepsDisplayField.connector@@",
+            "type":"selectbox",
+            "value" : "line",
+            "options":[
+                {
+                    "value":"line",
+                    "label": "@@form.BootstrapStepsDisplayField.connector.line@@"
+                },
+                {
+                    "value":"arrow",
+                    "label":"@@form.BootstrapStepsDisplayField.connector.arrow@@"
+                }
+            ]
+         },
+         {
+                "name": "iconColor",
+                "label": "@@form.BootstrapStepsDisplayField.iconColor@@",
+                "type": "color",
+                "value" : "#FFFFFF",
+                "control_field": "theme",
+                "control_value": "2",
+                "control_use_regex": "false",
+                "required" : "true"
+         },
+         {
+                "name": "iconBackgroundColor",
+                "label": "@@form.BootstrapStepsDisplayField.iconBackgroundColor@@",
+                "type": "color",
+                "value" : "#f5f5f5",
+                "control_field": "theme",
+                "control_value": "2",
+                "control_use_regex": "false",
+                "required" : "true"
+         },
+         {
+                "name": "iconBackgroundColorComplete",
+                "label": "@@form.BootstrapStepsDisplayField.iconBackgroundColorComplete@@",
+                "type": "color",
+                "value" : "#0da9ef",
+                "control_field": "theme",
+                "control_value": "2",
+                "control_use_regex": "false",
+                "required" : "true"
+         }
+      ]
+   }
+]
