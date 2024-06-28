@@ -11,7 +11,7 @@ pipeline {
         JOGET_USERNAME = 'admin'
         JOGET_PASSWORD = 'admin'
         SONARQUBE_SERVER = 'http://localhost:9000'
-        NOTIFY_EMAIL = 'your-email@example.com'
+        NOTIFY_EMAIL = 'Oussama.hamaied@hotmail.fr'
     }
 
     triggers {
