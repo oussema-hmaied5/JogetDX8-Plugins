@@ -9,22 +9,22 @@
     <div style="overflow-x:auto;" >
     <div id="repeater_${elementParamName!}_${element.properties.elementUniqueKey!}" name="${elementParamName!}" class="subform_repeater_container form-element">
         <input class="position" type="hidden" name="${elementParamName!}_position" value=""/>
-        
-        
-        
-        
-        <table  style="border:none;" class="xrounded_shadowed default footable-loaded footable" id="paList">
-<#--            <#if element.properties.readonly! != 'true' && element.properties.addMode?? && element.properties.addMode! == "oneTop">-->
+
+        <br>
+        <table>
+            <#if element.properties.readonly! != 'true'
+            && element.properties.addMode??
+            && (element.properties.addMode! == "oneTop" || element.properties.addMode! == "enable")>
                 <thead>
-                    ${element.getRowTemplate(null, elementParamName, "Header")} 
-                     
-                </thead>    
-<#--            </#if>-->
+                ${element.getRowTemplate(null, elementParamName, "Header")}
+                </thead>
+            </#if>
+
             <tbody>
-<#--                    <#if element.properties.enableSorting?? && element.properties.enableSorting! == "true">class="sortable"</#if>>-->
+             <#if element.properties.enableSorting?? && element.properties.enableSorting! == "true">class="sortable"</#if>
             <#list rows as row>
                     ${element.getRowTemplate(row, elementParamName, "body")}
-                    
+
                 </#list>
             </tbody>
             <#if element.properties.readonly! != 'true' && element.properties.addMode?? && element.properties.addMode! == "oneBottom">
@@ -34,16 +34,13 @@
                 </tfoot>
             </#if>
         </table>
-        
-       
-        
+
+
+
         <div class="subform_repeater_action">
-<#--            <#if element.properties.collapsible?? && element.properties.collapsible! == "true">
-                <button class="repeater_actions_collapsible rows_collapse"><span>@@form.subformRepeater.collapseAll@@</span></button>
-            </#if>-->
+
             <#if element.properties.readonly! != 'true' && element.properties.addMode?? && element.properties.addMode! == "enable">
                 <button class="repeater-actions-add"><span>Ajouter</span></button>
-<#--                <button class="repeater-actions-add"><span>test</span></button>-->
             </#if>
         </div>
     </div>

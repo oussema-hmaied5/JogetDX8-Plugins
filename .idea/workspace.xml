@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d01c03bc-661f-45a9-97be-2e976898da67" name="Changes" comment="Edit JenkinsFile">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/java/org/joget/marketplace/Activator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/java/org/joget/marketplace/AjaxSelectbox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/resources/message/AjaxSelectbox.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/resources/properties/ajaxselectbox.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/resources/resources/js/jquery.ajaxselect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/resources/templates/ajaxSelectbox.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/src/main/java/org/joget/marketplace/Activator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/src/main/java/org/joget/marketplace/EnhancedJsonTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/src/main/java/org/joget/marketplace/TokenApiUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/src/main/resources/messages/enhancedJsonTool.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/src/main/resources/properties/enhancedJsonTool.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/src/main/java/org/joget/SelectBoxOptionsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/select-box-options-filter/src/main/java/org/joget/SelectBoxOptionsFilter.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/select-box-options-filter" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-3.0.3\php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2h1AGaIkWhMTdMTzVIGe1bsmPFJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "develop",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/oussa/Desktop/joget-spread-sheet/subform-repeater-FP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.4413793",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\oussa\Desktop\JogetDX8-Plugins\form_repeater" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="UiTestsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ui-tests" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.uitests.UiTestsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d01c03bc-661f-45a9-97be-2e976898da67" name="Changes" comment="" />
+      <created>1716751115636</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716751115636</updated>
+      <workItem from="1716751118181" duration="7301000" />
+      <workItem from="1716758727407" duration="3423000" />
+      <workItem from="1717603924665" duration="11682000" />
+      <workItem from="1718024785132" duration="10783000" />
+      <workItem from="1718095952540" duration="1260000" />
+      <workItem from="1718268893985" duration="125000" />
+      <workItem from="1718275350631" duration="5740000" />
+      <workItem from="1718530972019" duration="6553000" />
+      <workItem from="1718790817696" duration="7904000" />
+      <workItem from="1718960844652" duration="561000" />
+      <workItem from="1718961417565" duration="9309000" />
+      <workItem from="1719237861679" duration="3495000" />
+      <workItem from="1719485005037" duration="1993000" />
+      <workItem from="1719541045899" duration="1244000" />
+      <workItem from="1719821311222" duration="3979000" />
+      <workItem from="1720441970096" duration="362000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add Plugins">
+      <option name="closed" value="true" />
+      <created>1719540380795</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719540380795</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add Plugins">
+      <option name="closed" value="true" />
+      <created>1719540512716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719540512716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Edit JenkinsFile">
+      <option name="closed" value="true" />
+      <created>1719541463859</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719541463859</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Edit JenkinsFile">
+      <option name="closed" value="true" />
+      <created>1719541694054</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719541694054</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add Plugins" />
+    <MESSAGE value="Edit JenkinsFile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit JenkinsFile" />
+  </component>
+</project>

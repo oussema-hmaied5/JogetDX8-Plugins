@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'repeater';
-  src: url('../font/repeater.eot?97086545');
-  src: url('../font/repeater.eot?97086545#iefix') format('embedded-opentype'),
-       url('../font/repeater.woff?97086545') format('woff'),
-       url('../font/repeater.ttf?97086545') format('truetype'),
-       url('../font/repeater.svg?97086545#repeater') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'repeater';
+    src: url('../font/repeater.eot?97086545');
+    src: url('../font/repeater.eot?97086545#iefix') format('embedded-opentype'),
+    url('../font/repeater.woff?97086545') format('woff'),
+    url('../font/repeater.ttf?97086545') format('truetype'),
+    url('../font/repeater.svg?97086545#repeater') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .subform_repeater .collapsed-row  .subform_wrapper {
@@ -60,7 +60,7 @@
 }
 
 .subform_repeater .order {
-    vertical-align: top; 
+    vertical-align: top;
     cursor: move;
 }
 
@@ -68,7 +68,7 @@
     cursor: move;
 }
 
-.subform_repeater .order, 
+.subform_repeater .order,
 .subform_repeater .repeater-action{
     text-align: center;
     width:20px;
@@ -136,7 +136,7 @@
 }
 
 .table-content-class {
-    overflow-y: scroll;    
-    overflow-x: hidden;   
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 

@@ -14,6 +14,7 @@
         <module name="form_repeater" />
         <module name="subform-repeater-table" />
         <module name="ui-tests" />
+        <module name="SelectBoxOptionsFilter" />
         <module name="section-wizard" />
       </profile>
     </annotationProcessing>

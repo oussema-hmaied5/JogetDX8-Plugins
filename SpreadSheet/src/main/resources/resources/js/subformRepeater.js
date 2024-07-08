@@ -1,5 +1,5 @@
 (function($){
-    
+
     $.fn.extend({
         subformRepeater : function(o){
             var target = this;
@@ -7,7 +7,7 @@
                 $(target).find("> table > thead > tr.grid-row, > table > tbody > tr.grid-row, > table > tfoot > tr.grid-row").each(function(){
                     initRow($(this), o);
                 });
-                
+
                 if (o.collapsedByDefault === "true" && o.collapsible === "true") {
                     $(target).find("> table > tbody > tr.grid-row").each(function(){
                         if(!$(this).hasClass("collapsed-row") && $(this).find("> td > a.repeater-collapsible").length > 0) {
@@ -19,17 +19,17 @@
                     $(button).addClass("rows_expand");
                     $(button).find("span").text(o.messages['expandAll']);
                 }
-                
+
                 if ($(target).find("> table > tbody > tr.grid-row").length === 0) {
                     $(target).find("> .subform_repeater_action > .repeater_actions_collapsible").hide();
                 }
-                
+
                 $(target).find("> .subform_repeater_action > .repeater_actions_collapsible").click(function(){
                     if ($(this).hasClass("rows_collapse")) {
                         $(this).removeClass("rows_collapse");
                         $(this).addClass("rows_expand");
                         $(this).find("span").text(o.messages['expandAll']);
-                        
+
                         $(target).find("> table > tbody > tr.grid-row").each(function(){
                             if(!$(this).hasClass("collapsed-row")) {
                                 collapseRow($(this), o);
@@ -39,7 +39,7 @@
                         $(this).addClass("rows_collapse");
                         $(this).removeClass("rows_expand");
                         $(this).find("span").text(o.messages['collapseAll']);
-                        
+
                         $(target).find("> table > tbody > tr.grid-row").each(function(){
                             if($(this).hasClass("collapsed-row")) {
                                 expandRow($(this), o);
@@ -48,14 +48,14 @@
                     }
                     return false;
                 });
-                
+
                 $(target).find("> .subform_repeater_action > .repeater-actions-add").click(function(){
                     addRow(o, target, "list");
                     return false;
                 });
-                
+
                 var sortable = $(target).find(".sortable");
-                
+
                 if (sortable.length > 0) {
                     $(sortable).sortable({
                         handle: ".order",
@@ -73,37 +73,37 @@
                         }
                     });
                 }
-                
+
                 updatePositionIndex($(target), o);
             }
             return target;
         }
     });
-    
+
     function initRow(row, o) {
         if(o.readonly === undefined || o.readonly !== 'true'){
             $(row).find("> td > a.repeater-action-delete").click(function(){
-               /* if (confirm(o.messages['deleteRow'])) {
-					console.log("**  ok click***");
-                    var target = $(row).closest(".subform_repeater_container");
-                    $(row).remove();
-                    updatePositionIndex(target, o);
-                }*/
-					 
-                    var target = $(row).closest(".subform_repeater_container");
-                    $(row).remove();
-                    updatePositionIndex(target, o);
+                /* if (confirm(o.messages['deleteRow'])) {
+                     console.log("**  ok click***");
+                     var target = $(row).closest(".subform_repeater_container");
+                     $(row).remove();
+                     updatePositionIndex(target, o);
+                 }*/
+
+                var target = $(row).closest(".subform_repeater_container");
+                $(row).remove();
+                updatePositionIndex(target, o);
 
             });
-            
+
             $(row).find("> td > a.repeater-action-add").click(function(){
-					console.log("**addRow***");
+                console.log("**addRow***");
                 addRow(o, row, "row");
             });
-            
+
             updatePositionIndex($(row).closest(".subform_repeater_container"), o);
         }
-        
+
         $(row).find("> td > a.repeater-collapsible").click(function(){
             if ($(row).hasClass("collapsed-row")) {
                 expandRow(row, o);
@@ -112,7 +112,7 @@
             }
         });
     }
-    
+
     function updatePositionIndex(target, o) {
         var position = $(target).find("> input.position");
         var uv = "";
@@ -122,7 +122,7 @@
         $(position).val(uv);
         $(target).trigger("change");
     }
-    
+
     function addRow(o, target, mode) {
         $.ajax({
             type: "POST",
@@ -130,7 +130,7 @@
             url: o.url,
             success: function(response) {
                 var newRow = $(response);
-                
+
                 if (mode === "list") {
                     $(target).find("> table > tbody").append(newRow);
                     initRow(newRow, o);
@@ -142,7 +142,7 @@
             }
         });
     }
-    
+
     function collapseRow(row, o) {
         $(row).addClass("collapsed-row");
         $(row).find("> td > a.repeater-collapsible").attr("title", o.messages['expand']);
@@ -152,7 +152,7 @@
         form.css("height", height + "px");
         form.css("overflow", "hidden");
     }
-    
+
     function expandRow(row, o) {
         $(row).removeClass("collapsed-row");
         $(row).find("> td > a.repeater-collapsible").attr("title", o.messages['collapse']);

@@ -15,7 +15,7 @@ public class SubformRepeaterStoreBinderWrapper extends FormBinder implements For
     }
 
     public String getVersion() {
-        return "7.0.3";
+        return "8.0.0";
     }
 
     public String getDescription() {
