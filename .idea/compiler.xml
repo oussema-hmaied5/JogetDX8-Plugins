@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="typeahead-multiselect-datalist-filter" />
+        <module name="enhanced-json-tool" />
+        <module name="section-tabs" />
+        <module name="bootstrap-steps-display" />
+        <module name="ajax_selectbox" />
+        <module name="form_repeater" />
+        <module name="subform-repeater-table" />
+        <module name="ui-tests" />
+        <module name="section-wizard" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
