@@ -4,5 +4,5 @@ The AJAX Select Box Plugin is a new Form Field Element plugin that uses AJAX to 
 
 This is a demonstration app to show the usage of the AJAX Selectbox form element plugin for Joget DX.
 
-This app already includes the ajax_selectbox-7.0.2.jar plugin. If you cannot see this form field element in your Form Designer, you can download the plugin directly from Joget Marketplace and import the plugin via the Plugin Manager.
 
+![image](https://github.com/user-attachments/assets/0503cf0f-bc00-4114-bb4e-dbdabc8e68e8)
