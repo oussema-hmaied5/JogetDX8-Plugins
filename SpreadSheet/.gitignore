@@ -1,4 +1,4 @@
-*.toDelete
+.toDelete
 output/**
 *.class
 *~

@@ -5,24 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d01c03bc-661f-45a9-97be-2e976898da67" name="Changes" comment="Final Commit Migration Plugins">
-      <change afterPath="$PROJECT_DIR$/alfresco-cmis-test/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alfresco-cmis-test/src/main/java/org/alfresco/extension/CustomModelRegistrar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/demo-events/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/demo-events/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/demo-events/src/main/java/org/alfresco/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/demo-events/src/test/java/org/alfresco/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enhanced-json-tool-main/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rich-text/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rich-text/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/section-tabs/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/section-wizard/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/select-box-options-filter/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alfresco/acs-deployment" beforeDir="false" afterPath="$PROJECT_DIR$/Alfresco/acs-deployment" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alfresco/acs-deployment/docker-compose/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Alfresco/acs-deployment/docker-compose/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/src/main/java/org/joget/marketplace/Activator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/src/main/java/org/joget/marketplace/Activator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/target/ajax_selectbox-7.0.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/target/ajax_selectbox-7.0.6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/target/classes/org/joget/marketplace/Activator.class" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/target/classes/org/joget/marketplace/Activator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ajax-selectbox/target/classes/org/joget/marketplace/AjaxSelectbox.class" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/target/classes/org/joget/marketplace/AjaxSelectbox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpreadSheet/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/SpreadSheet/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ajax-selectbox/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ajax-selectbox/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enhanced-json-tool-main/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/enhanced-json-tool-main/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/form_repeater/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/form_repeater/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/section-tabs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/section-tabs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/section-wizard" beforeDir="false" afterPath="$PROJECT_DIR$/section-wizard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/section-wizard/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/section-wizard/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter" beforeDir="false" afterPath="$PROJECT_DIR$/select-box-options-filter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/select-box-options-filter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/select-box-options-filter/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/src/main/java/org/alfresco/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/src/main/java/org/alfresco/CustomModelRegistrar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/demo-events/src/test/java/org/alfresco/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/typeahead-multiselect-datalist-filter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/typeahead-multiselect-datalist-filter/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +75,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/oussa/Desktop/joget-spread-sheet/subform-repeater-FP",
+    "last_opened_file_path": "C:/Users/oussa/Desktop/JogetDX8-Plugins/rich-text",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,7 +94,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\oussa\Desktop\JogetDX8-Plugins\rich-text" />
       <recent name="C:\Users\oussa\Desktop\JogetDX8-Plugins\form_repeater" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\oussa\Desktop\JogetDX8-Plugins\rich-text" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -145,6 +158,7 @@
       <workItem from="1720441970096" duration="2271000" />
       <workItem from="1721038144974" duration="241000" />
       <workItem from="1721049437788" duration="13920000" />
+      <workItem from="1725278813509" duration="381000" />
     </task>
     <task id="LOCAL-00001" summary="Add Plugins">
       <option name="closed" value="true" />
