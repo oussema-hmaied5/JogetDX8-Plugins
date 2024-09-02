@@ -2,6 +2,8 @@ package org.joget.marketplace;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.joget.plugin.base.ApplicationPlugin;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -15,6 +17,8 @@ public class Activator implements BundleActivator {
 
         //Register plugin here
         registrationList.add(context.registerService(AjaxSelectbox.class.getName(), new AjaxSelectbox(), null));
+
+
     }
 
     public void stop(BundleContext context) {

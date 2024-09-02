@@ -1,0 +1,55 @@
+.mce-top-part::before {
+    box-shadow: 0 2px 2px -2px rgba(34, 47, 62, .1), 0 8px 8px -4px rgba(34, 47, 62, .07) !important;
+}
+
+.mce-tinymce {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border-color: #eee !important;
+}
+
+.mce-edit-area {
+    border-width: 0 !important;
+}
+
+.mce-menu {
+    background-color: #fff !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    box-shadow: 0 0 2px 0 rgba(34, 47, 62, .2), 0 4px 8px 0 rgba(34, 47, 62, .15) !important;
+}
+
+.mce-menubar .mce-menubtn:hover, .mce-menubar .mce-menubtn.mce-active, .mce-menubar .mce-menubtn:focus {
+    border-radius: 5px !important;
+    background: #eee !important;
+    border: none !important;
+}
+
+.mce-menubar {
+    border-width: 0 !important;
+    padding: 5px 0 !important;
+}
+
+.mce-toolbar-grp {
+    padding: 8px 0 !important;
+}
+
+.mce-btn {
+    border-radius: 5px !important;
+    border: none !important;
+}
+
+.mce-btn:hover, .mce-btn:active {
+    border-radius: 5px !important;
+    background: #eee;
+}
+
+.mce-toolbar .mce-btn-group {
+    border: none !important;
+    padding: 0 12px !important;
+}
+    
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
+}

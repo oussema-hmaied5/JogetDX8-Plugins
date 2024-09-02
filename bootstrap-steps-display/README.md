@@ -1,6 +1,6 @@
 # Description
 
-This form element is used to display status in steps with 2 presentation styles. Please refer to the [documentation](https://dev.joget.org/community/display/marketplace/Bootstrap+Steps+Display+Plugin).
+Bootstrap Steps Display is a Form Element and Datalist Column Formatter that allows users to display status in steps with two presentation styles. For example, you can now display steps in icons with color in your form or datalist column.
 
 # Getting Help
 

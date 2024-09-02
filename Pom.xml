@@ -19,6 +19,8 @@
         <module>typeahead-multiselect-datalist-filter</module>
         <module>SpreadSheet</module>
         <module>ui-tests</module>
+        <module>alfresco-cmis-test</module>
+        <module>alfresco-cmis-test</module>
 
     </modules>
 </project>

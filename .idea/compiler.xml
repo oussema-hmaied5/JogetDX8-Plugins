@@ -12,11 +12,15 @@
         <module name="bootstrap-steps-display" />
         <module name="ajax_selectbox" />
         <module name="form_repeater" />
+        <module name="alfresco-cmis-test" />
         <module name="subform-repeater-table" />
         <module name="ui-tests" />
         <module name="SelectBoxOptionsFilter" />
         <module name="section-wizard" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="joget-alfresco-plugin" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

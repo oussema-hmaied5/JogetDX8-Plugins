@@ -1,0 +1,89 @@
+[
+    {
+        "title": "Edit Rich Text",
+        "properties": [
+            {
+                "name": "id",
+                "label": "@@form.textfield.id@@",
+                "type": "autocomplete",
+                "required": "True",
+                "regex_validation": "^[a-zA-Z0-9_]+$",
+                "validation_message": "@@form.textfield.invalidId@@",
+                "options_callback": "FormBuilder.getAllFieldOptions"
+            },
+            {
+                "name": "label",
+                "label": "@@form.textfield.label@@",
+                "type": "textfield",
+                "required": "True",
+                "value": "Rich Text"
+            },
+            {
+                "label": "@@form.textfield.ui@@",
+                "type": "header"
+            },
+            {
+                "name": "readonly",
+                "label": "@@form.textfield.readonly@@",
+                "type": "checkbox",
+                "value": "False",
+                "options": [
+                    {
+                        "value": "true",
+                        "label": ""
+                    }
+                ]
+            },
+            {
+                "name": "defautHeight",
+                "label": "Default height",
+                "type": "textfield",
+                "value": "300",
+                "required": "True"
+            },
+            {
+                "name": "fullWidth",
+                "label": "Full Width",
+                "type": "checkbox",
+                "value": "False",
+                "options": [
+                    {
+                        "value": "true",
+                        "label": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "@@form.textfield.advancedOptions@@",
+        "properties": [
+            {
+                "label": "@@form.textfield.data@@",
+                "type": "header"
+            },
+            {
+                "name": "value",
+                "label": "@@form.textfield.value@@",
+                "type": "htmleditor"
+            },
+            {
+                "name": "validator",
+                "label": "@@form.textfield.validator@@",
+                "type": "elementselect",
+                "options_ajax": "[CONTEXT_PATH]/web/property/json/getElements?classname=org.joget.apps.form.model.FormValidator",
+                "url": "[CONTEXT_PATH]/web/property/json[APP_PATH]/getPropertyOptions"
+            },
+            {
+                "label": "@@form.textfield.workflow@@",
+                "type": "header"
+            },
+            {
+                "name": "workflowVariable",
+                "label": "@@form.textfield.workflowVariable@@",
+                "type": "autocomplete",
+                "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/workflowVariable/options"
+            }
+        ]
+    }
+]

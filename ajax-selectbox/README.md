@@ -1,6 +1,12 @@
 # Description
 
-This bundle contains AJAX Select Box Plugin. This Plugin is a new form element that uses AJAX to retrieve options by populating the select box based on the selected datalist. Please refer to its [documentation and sample demo app.](https://marketplace.joget.org/jw/web/userview/mp/mpp/_/vad?id=APP_ajaxSelectBoxDemo).
+
+The AJAX Select Box Plugin is a new Form Field Element plugin that uses AJAX to retrieve and populate the select box options based on the selected datalist. Users can type in the search filter and it will dynamically retrieve the available options as the user continues to key in.
+
+This is a demonstration app to show the usage of the AJAX Selectbox form element plugin for Joget DX.
+
+This app already includes the ajax_selectbox-7.0.2.jar plugin. If you cannot see this form field element in your Form Designer, you can download the plugin directly from Joget Marketplace and import the plugin via the Plugin Manager.
+
 
 # Getting Help
 
