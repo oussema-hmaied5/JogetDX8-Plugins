@@ -13,9 +13,9 @@
         <module>bootstrap-steps-display</module>
         <module>ajax-selectbox</module>
         <module>enhanced-json-tool-main</module>
-        <module>select-box-options-filter</module>
-        <module>section-tabs</module>
-        <module>section-wizard</module>
+        <module>selectboxoptionsfilter</module>
+        <module>section_tabs</module>
+        <module>section_wizard</module>
         <module>typeahead-multiselect-datalist-filter</module>
         <module>SpreadSheet</module>
         <module>ui-tests</module>

@@ -1,0 +1,995 @@
+[{
+    title : '@@theme.essenceTheme.config@@',
+    properties : [
+    {
+        name : 'horizontal_menu',
+        label : '@@theme.progressive.menu_position@@',
+        type : 'imageradio',
+        value : 'dark-sidebar',
+        mode : 'inline',
+        size : 'width:292px;height:220px',
+        options: [{
+            value: 'dark-sidebar',
+            label: '@@theme.essenceTheme.darkSidebar@@',
+            image: '[CONTEXT_PATH]/plugin/org.joget.marketplace.EssenceTheme/img/dark-sidebar.png'
+        },
+        {
+            value: 'light-sidebar',
+            label: '@@theme.essenceTheme.lightSidebar@@',
+            image: '[CONTEXT_PATH]/plugin/org.joget.marketplace.EssenceTheme/img/light-sidebar.png'
+        },
+        {
+            value: 'dark-header',
+            label: '@@theme.essenceTheme.darkHeader@@',
+            image: '[CONTEXT_PATH]/plugin/org.joget.marketplace.EssenceTheme/img/dark-header.png'
+        },
+        {
+            value: 'light-header',
+            label: '@@theme.essenceTheme.lightHeader@@',
+            image: '[CONTEXT_PATH]/plugin/org.joget.marketplace.EssenceTheme/img/light-header.png'
+        }],
+        required : 'true'
+    },
+    {
+        name : 'dx8backgroundImage',
+        label : '@@ubuilder.backgroundImage@@',
+        type: 'image',
+        appPath: '[APP_PATH]',
+        allowInput : 'true',
+        isPublic : 'true',
+        imageSize : 'width:80px; height:35px; background-size: contain; background-repeat: no-repeat;'
+    },
+    {
+        name : 'darkMode',
+        label : '@@theme.essenceTheme.darkTheme@@',
+        type : 'checkbox',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'compactTheme',
+        label : '@@theme.essenceTheme.compactTheme@@',
+        type : 'checkbox',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        label : '@@theme.essenceTheme.fontSettings@@',
+        type : 'header'
+    },
+    {
+        name : 'usingLocalFonts',
+        label : '@@theme.essenceTheme.usingLocalFonts@@',
+        type : 'checkbox',
+        value : 'true',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'googleFontAPIKey',
+        label : '@@theme.essenceTheme.googleFontAPI@@',
+        type : 'textfield',
+        description: '@@theme.essenceTheme.googleFontAPI.description@@',
+        control_field: 'usingLocalFonts',
+        control_value: '',
+        control_use_regex: 'true',
+        required : 'true'
+    },
+    {
+        name : 'googleFont',
+        label : '@@theme.essenceTheme.googleFonts@@',
+        description : '@@theme.essenceTheme.googleFonts.description@@',
+        required : 'true',
+        type : 'selectbox',
+        options_ajax_on_change : 'googleFontAPIKey',
+        options_ajax : '[CONTEXT_PATH]/web/json/plugin/org.joget.marketplace.EssenceTheme/service?action=getFontFamily',
+        control_field: 'usingLocalFonts',
+        control_value: '',
+        control_use_regex: 'true'
+    },
+    {
+        label : '@@theme.essenceTheme.formSettings@@',
+        type : 'header'
+    },
+    {
+        name : 'roundedFieldDesign',
+        label : '@@theme.essenceTheme.roundedField@@',
+        type : 'checkbox',
+        value : '',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        label : '@@ubuilder.customColor@@',
+        type : 'header'
+    },
+    {
+        name : 'dx8background',
+        label : '@@ubuilder.background@@',
+        type : 'color',
+        value : '#F9F9F9'
+    },
+    {
+        name : 'dx8contentbackground',
+        label : '@@ubuilder.contentBackground@@',
+        type : 'color',
+        value : '#FFFFFF'
+    },
+    {
+        name : 'dx8-dark-sidebar-headerColor',
+        label : '@@ubuilder.headerColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-headerColor',
+        label : '@@ubuilder.headerColor@@',
+        type : 'color',
+        value : '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-headerColor',
+        label : '@@ubuilder.headerColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-headerColor',
+        label : '@@ubuilder.headerColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-headerFontColor',
+        label : '@@ubuilder.headerFontColor@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-headerFontColor',
+        label : '@@ubuilder.headerFontColor@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-headerFontColor',
+        label : '@@ubuilder.headerFontColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-headerFontColor',
+        label : '@@ubuilder.headerFontColor@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navBackground',
+        label : '@@ubuilder.navBackground@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navBackground',
+        label : '@@ubuilder.navBackground@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navBackground',
+        label : '@@ubuilder.navBackground@@',
+        type : 'color',
+        value : '#15171C',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navBackground',
+        label : '@@ubuilder.navBackground@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navLinkBackground',
+        label : '@@ubuilder.navLinkBackground@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navLinkBackground',
+        label : '@@ubuilder.navLinkBackground@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navLinkBackground',
+        label : '@@ubuilder.navLinkBackground@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navLinkBackground',
+        label : '@@ubuilder.navLinkBackground@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navLinkColor',
+        label : '@@ubuilder.navLinkColor@@',
+        type : 'color',
+        value : '#8D98AF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navLinkColor',
+        label : '@@ubuilder.navLinkColor@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navLinkColor',
+        label : '@@ubuilder.navLinkColor@@',
+        type : 'color',
+        value : '#9D9DA6',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navLinkColor',
+        label : '@@ubuilder.navLinkColor@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navLinkIcon',
+        label : '@@ubuilder.navLinkIcon@@',
+        type : 'color',
+        value : '#8D98AF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navLinkIcon',
+        label : '@@ubuilder.navLinkIcon@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navLinkIcon',
+        label : '@@ubuilder.navLinkIcon@@',
+        type : 'color',
+        value : '#9D9DA6',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navLinkIcon',
+        label : '@@ubuilder.navLinkIcon@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-subMenuNavLinkColor',
+        label : '@@theme.essenceTheme.subMenu.color@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-subMenuNavLinkColor',
+        label : '@@theme.essenceTheme.subMenu.color@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-subMenuNavLinkIcon',
+        label : '@@theme.essenceTheme.subMenu.IconColor@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-subMenuNavLinkIcon',
+        label : '@@theme.essenceTheme.subMenu.IconColor@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navActiveLinkBackground',
+        label : '@@ubuilder.navActiveLinkBackground@@',
+        type : 'color',
+        value: '#3E97FF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navActiveLinkBackground',
+        label : '@@ubuilder.navActiveLinkBackground@@',
+        type : 'color',
+        value: '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navActiveLinkBackground',
+        label : '@@ubuilder.navActiveLinkBackground@@',
+        type : 'color',
+        value: '#3E97FF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navActiveLinkBackground',
+        label : '@@ubuilder.navActiveLinkBackground@@',
+        type : 'color',
+        value: '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navActiveLinkColor',
+        label : '@@ubuilder.navActiveLinkColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navActiveLinkColor',
+        label : '@@ubuilder.navActiveLinkColor@@',
+        type : 'color',
+        value : '#071437',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navActiveLinkColor',
+        label : '@@ubuilder.navActiveLinkColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navActiveLinkColor',
+        label : '@@ubuilder.navActiveLinkColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navActiveIconColor',
+        label : '@@ubuilder.navActiveIconColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navActiveIconColor',
+        label : '@@ubuilder.navActiveIconColor@@',
+        type : 'color',
+        value : '#071437',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navActiveIconColor',
+        label : '@@ubuilder.navActiveIconColor@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navActiveIconColor',
+        label : '@@ubuilder.navActiveIconColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-subMenuNavActiveLinkBackground',
+        label : '@@theme.essenceTheme.subMenu.activeBackground@@',
+        type : 'color',
+        value: '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-subMenuNavActiveLinkBackground',
+        label : '@@theme.essenceTheme.subMenu.activeBackground@@',
+        type : 'color',
+        value: '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-subMenuNavActiveLinkColor',
+        label : '@@theme.essenceTheme.subMenu.activeColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-subMenuNavActiveLinkColor',
+        label : '@@theme.essenceTheme.subMenu.activeColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-subMenuNavActiveIconColor',
+        label : '@@theme.essenceTheme.subMenu.activeIconColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-subMenuNavActiveIconColor',
+        label : '@@theme.essenceTheme.subMenu.activeIconColor@@',
+        type : 'color',
+        value : '#1B84FF',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navBadge',
+        label : '@@ubuilder.navBadge@@',
+        type : 'color',
+        value : '#FFFFFF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navBadge',
+        label : '@@ubuilder.navBadge@@',
+        type : 'color',
+        value : '#E0E3E9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navBadge',
+        label : '@@ubuilder.navBadge@@',
+        type : 'color',
+        value : '#24262F',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navBadge',
+        label : '@@ubuilder.navBadge@@',
+        type : 'color',
+        value : '#F9F9F9',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navBadgeText',
+        label : '@@ubuilder.navBadgeText@@',
+        type : 'color',
+        value : '#252F4A',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navBadgeText',
+        label : '@@ubuilder.navBadgeText@@',
+        type : 'color',
+        value : '#99A1B7',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navBadgeText',
+        label : '@@ubuilder.navBadgeText@@',
+        type : 'color',
+        value : '#8D98AF',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navBadgeText',
+        label : '@@ubuilder.navBadgeText@@',
+        type : 'color',
+        value : '#4B5675',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-sidebar-navScrollbarThumb',
+        label : '@@ubuilder.navScrollbarThumb@@',
+        type : 'color',
+        value : '#4D5F82',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-sidebar-navScrollbarThumb',
+        label : '@@ubuilder.navScrollbarThumb@@',
+        type : 'color',
+        value : '#F1F1F4',
+        control_field: 'horizontal_menu',
+        control_value: 'light-sidebar',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-dark-header-navScrollbarThumb',
+        label : '@@ubuilder.navScrollbarThumb@@',
+        type : 'color',
+        value : '#F1F1F4',
+        control_field: 'horizontal_menu',
+        control_value: 'dark-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8-light-header-navScrollbarThumb',
+        label : '@@ubuilder.navScrollbarThumb@@',
+        type : 'color',
+        value : '#F1F1F4',
+        control_field: 'horizontal_menu',
+        control_value: 'light-header',
+        control_use_regex: 'true'
+    },
+    {
+        name : 'dx8buttonBackground',
+        label : '@@ubuilder.buttonBackground@@',
+        type : 'color',
+        value : '#1B84FF'
+    },
+    {
+        name : 'dx8buttonColor',
+        label : '@@ubuilder.buttonColor@@',
+        type : 'color',
+        value : '#FFFFFF'
+    },
+    {
+        name : 'dx8primaryColor',
+        label : '@@ubuilder.primaryColor@@',
+        type : 'color',
+        value : '#009EF7'
+    },
+    {
+        name : 'dx8headingBgColor',
+        label : '@@ubuilder.headingBgColor@@',
+        type : 'color',
+        value : '#FFFFFF'
+    },
+    {
+        name : 'dx8headingFontColor',
+        label : '@@ubuilder.headingFontColor@@',
+        type : 'color',
+        value : '#252F4A'
+    },
+    {
+        name : 'dx8fontColor',
+        label : '@@ubuilder.fontColor@@',
+        type : 'color',
+        value : '#252F4A'
+    },
+    {
+        name : 'dx8contentFontColor',
+        label : '@@ubuilder.contentFontColor@@',
+        type : 'color',
+        value : '#252F4A'
+    },
+    {
+        name : 'dx8linkColor',
+        label : '@@ubuilder.linkColor@@',
+        type : 'color',
+        value : '#009EF7'
+    },
+    {
+        name : 'dx8linkActiveColor',
+        label : '@@ubuilder.linkActiveColor@@',
+        type : 'color',
+        value : '#009EF7'
+    },
+    {
+        name : 'dx8footerBackground',
+        label : '@@ubuilder.footerBackground@@',
+        type : 'color',
+        value : '#FFFFFF'
+    },
+    {
+        name : 'dx8footerColor',
+        label : '@@ubuilder.footerColor@@',
+        type : 'color',
+        value : '#252F4A'
+    }]
+},
+{
+    title : '@@theme.progressive.advanced@@',
+    properties : [
+    {
+        name : 'fav_icon',
+        label : '@@theme.progressive.favIcon@@',
+        type: 'image',
+        appPath: '[APP_PATH]',
+        allowInput : 'true',
+        isPublic : 'true',
+        imageSize : 'width:16px;height:16px;'
+    },
+    {
+        name : 'logo',
+        label : '@@theme.progressive.logo@@',
+        type: 'image',
+        appPath: '[APP_PATH]',
+        allowInput : 'true',
+        isPublic : 'true',
+        imageSize : 'width:80px; height:35px; background-size: contain; background-repeat: no-repeat;'
+    },
+    {
+        name : 'profile',
+        label : '@@theme.progressive.disabledProfile@@',
+        type : 'checkbox',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'userImage',
+        label : '@@theme.progressive.userImage@@',
+        type : 'selectbox',
+        value : '',
+        options : [{
+            value : 'no',
+            label : '@@theme.progressive.userImage.no@@'
+        },{
+            value : '',
+            label : '@@theme.progressive.userImage.gravatar@@'
+        },{
+            value : 'hashVariable',
+            label : '@@theme.progressive.userImage.hashVariable@@'
+        }]
+    },
+    {
+        name : 'userImageUrlHash',
+        label : '@@theme.progressive.userImageUrlHash@@',
+        type : 'textfield',
+        control_field: 'userImage',
+        control_value: 'hashVariable',
+        control_use_regex: 'false',
+        required : 'true'
+    },
+    {
+        name : 'inbox',
+        label : '@@theme.progressive.inbox@@',
+        type : 'selectbox',
+        value : 'current',
+        options : [{
+            value : '',
+            label : '@@theme.progressive.inbox.no@@'
+        },{
+            value : 'all',
+            label : '@@theme.progressive.inbox.all@@'
+        },{
+            value : 'current',
+            label : '@@theme.progressive.inbox.current@@'
+        }]
+    },    
+    {
+        name : 'homeUrl',
+        label : '@@theme.universal.homeUrl@@',
+        type : 'textfield'
+    },    
+    {
+        name : 'shortcutLinkLabel',
+        label : '@@theme.progressive.shortcutLinkLabel@@',
+        value : '@@theme.progressive.shortcut@@',
+        type : 'textfield'
+    },
+    {
+        name : 'shortcut',
+        label : '@@theme.progressive.shortcut@@',
+        description : '@@theme.progressive.shortcut.desc@@',
+        type : 'grid',
+        columns : [{
+            key : 'label',
+            label : '@@theme.progressive.label@@'
+        },
+        {
+            key : 'href',
+            label : '@@theme.progressive.href@@'
+        },
+        {
+            key : 'target',
+            label : '@@theme.progressive.target@@',
+            options : [
+                {value: '', label: ''},
+                {value: '_blank', label: '@@theme.progressive.target.newTab@@'},
+            ]
+        },
+        {
+            key : 'isPublic',
+            label : '@@theme.progressive.shortcut.public@@',
+            type : 'truefalse'
+        }]
+    },
+    {
+        name : 'userMenu',
+        label : '@@theme.progressive.userMenu@@',
+        description : '@@theme.progressive.userMenu.desc@@',
+        type : 'grid',
+        columns : [{
+            key : 'label',
+            label : '@@theme.progressive.label@@'
+        },
+        {
+            key : 'href',
+            label : '@@theme.progressive.href@@'
+        },
+        {
+            key : 'target',
+            label : '@@theme.progressive.target@@',
+            options : [
+                {value: '', label: ''},
+                {value: '_blank', label: '@@theme.progressive.target.newTab@@'},
+            ]
+        }]
+    },
+    {
+        name : 'fontControl',
+        label : '@@theme.universal.fontControl@@',
+        type : 'checkbox',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'enableResponsiveSwitch',
+        label : '@@theme.progressive.enableResponsiveSwitch@@',
+        type : 'checkbox',
+        value : 'true',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'removeAssignmentTitle',
+        label : '@@theme.progressive.removeAssignmentTitle@@',
+        type : 'checkbox',
+        options : [{
+            value : 'true',
+            label : ''
+        }]
+    },
+    {
+        name : 'homeAttractBanner',
+        label : '@@theme.progressive.homeAttractBanner@@',
+        type : 'codeeditor',
+        mode : 'html',
+        developer_mode : 'advanced'
+    },
+    {
+        name : 'css',
+        label : '@@theme.progressive.customCss@@',
+        type : 'codeeditor',
+        mode : 'css',
+        developer_mode : 'advanced'
+    },
+    {
+        name : 'js',
+        label : '@@theme.progressive.customJavascript@@',
+        type : 'codeeditor',
+        mode : 'javascript',
+        developer_mode : 'advanced'
+    },
+    {
+        name : 'subheader',
+        label : '@@theme.progressive.subHeader@@',
+        type : 'codeeditor',
+        mode : 'html',
+        developer_mode : 'advanced'
+    },
+    {
+        name : 'subfooter',
+        label : '@@theme.progressive.subFooter@@',
+        type : 'codeeditor',
+        mode : 'html',
+        developer_mode : 'advanced'
+    },
+    {
+        name: 'disableHelpGuide',
+        label: '@@theme.progressive.disableHelpGuide@@',
+        type: 'checkbox',
+        value: 'false',
+        options: [{
+            value: 'true',
+            label: ''
+        }]
+    }]
+},
+{
+    title : '@@pwa.settings@@',
+    properties : [
+    {
+        name: 'disablePwa',
+        label: '@@pwa.disablePwa@@',
+        type: 'checkbox',
+        value: 'false',
+        options: [{
+            value: 'true',
+            label: ''
+        }]
+    },
+    {
+        name: 'disablePush',
+        label: '@@push.disablePush@@',
+        type: 'checkbox',
+        value: 'false',
+        options: [{
+            value: 'true',
+            label: ''
+        }]
+    },
+    {
+        name: 'urlsToCache',
+        label: '@@pwa.urlsToCache@@',
+        type:'textarea',
+        description: '@@pwa.urlsToCache.desc@@',
+        cols:'40',
+        rows:'10'
+    }],
+    developer_mode : 'advanced',
+    buttons : [{
+        name : 'testpush',    
+        label : '@@push.sendTestPush@@',
+        ajax_url : '[CONTEXT_PATH]/web/json/push/message',
+        ajax_method : 'POST',
+        addition_fields : [
+        {
+            name : 'username',
+            label : '@@push.username@@',
+            type : 'textfield',
+            required : 'True'
+        },
+        {
+            name : 'title',
+            label : '@@push.title@@',
+            type : 'textfield',
+            required : 'True'
+        },
+        {
+            name : 'text',
+            label : '@@push.text@@',
+            type : 'textfield',
+            required : 'True'
+        },
+        {
+            name : 'url',
+            label : '@@push.url@@',
+            type : 'textfield',
+            required : 'False'
+        },
+        {
+            name : 'icon',
+            label : '@@push.icon@@',
+            type : 'textfield',
+            required : 'False'
+        },
+        {
+            name : 'badge',
+            label : '@@push.badge@@',
+            type : 'textfield',
+            required : 'False'
+        }]
+    }]
+}]

@@ -3,7 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Alfresco/acs-deployment" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/section-wizard" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/select-box-options-filter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/section_wizard" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/selectboxoptionsfilter" vcs="Git" />
   </component>
 </project>
