@@ -210,5 +210,5 @@ pipeline {
                 cc: 'oussama.hamaied@gmail.com'
             )
         }
-    }
+    }}
 }
