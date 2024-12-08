@@ -21,12 +21,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                script {
+                    currentBuild.description = "Checkout Stage"
+                }
                 git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Oussema-hmaied5/JogetDX8-Plugins.git'
             }
         }
 
         stage('Set up Java') {
             steps {
+                script {
+                    currentBuild.description = "Set up Java Stage"
+                }
                 bat 'java -version'
             }
         }
@@ -34,6 +40,7 @@ pipeline {
         stage('Build and Test with Maven') {
             steps {
                 script {
+                    currentBuild.description = "Build and Test Stage"
                     withEnv(["MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository"]) {
                         bat "mvn clean install -X -f ${params.PLUGIN_NAME}/pom.xml"
                         bat "mvn test -f ${params.PLUGIN_NAME}/pom.xml"
@@ -42,27 +49,15 @@ pipeline {
             }
         }
 
-        stage('Verify Build Output') {
-            steps {
-                script {
-                    bat "dir ${params.PLUGIN_NAME}\\target"
-                }
-            }
-        }
-
         stage('SonarQube Analysis') {
             steps {
                 script {
+                    currentBuild.description = "SonarQube Analysis Stage"
                     withSonarQubeEnv('SonarQube') {
-                        try {
-                            bat """
-                                set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
-                                mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.coverage.jacoco.xmlReportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml -f ${params.PLUGIN_NAME}/pom.xml
-                            """
-                        } catch (Exception e) {
-                            echo "Failed to execute SonarQube analysis: ${e.message}"
-                            throw e
-                        }
+                        bat """
+                            set MAVEN_OPTS=-Dmaven.repo.local=C:\\Jenkins\\repository
+                            mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.projectKey=${params.PLUGIN_NAME} -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.coverage.jacoco.xmlReportPaths=${params.PLUGIN_NAME}/target/site/jacoco/jacoco.xml -f ${params.PLUGIN_NAME}/pom.xml
+                        """
                     }
                 }
             }
@@ -71,11 +66,10 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
+                    currentBuild.description = "Quality Gate Stage"
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
                         error "Failed to pass the quality gate. Status: ${qg.status}"
-                    } else {
-                        echo "Test Passed Successfully! Status: ${qg.status}"
                     }
                 }
             }
@@ -84,11 +78,8 @@ pipeline {
         stage('Verify Docker Setup') {
             steps {
                 script {
-                    try {
-                        bat "docker ps | findstr ${DOCKER_CONTAINER}"
-                    } catch (Exception e) {
-                        error "Docker container ${DOCKER_CONTAINER} is not running. Please start the container and retry."
-                    }
+                    currentBuild.description = "Verify Docker Setup Stage"
+                    bat "docker ps | findstr ${DOCKER_CONTAINER}"
                 }
             }
         }
@@ -96,76 +87,21 @@ pipeline {
         stage('Deploy to Docker Joget') {
             steps {
                 script {
+                    currentBuild.description = "Deploy to Docker Joget Stage"
                     retry(3) {
-                        try {
-                            bat """
-                                docker cp ${params.PLUGIN_NAME}\\target\\${params.PLUGIN_NAME}-0.0.1-SNAPSHOT.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
-                                docker restart ${DOCKER_CONTAINER}
-                            """
-                            echo 'Plugin copied and Joget restarted successfully.'
-                        } catch (Exception e) {
-                            error 'Failed to copy plugin or restart Joget.'
-                        }
+                        bat """
+                            docker cp ${params.PLUGIN_NAME}\\target\\${params.PLUGIN_NAME}-0.0.1-SNAPSHOT.jar ${DOCKER_CONTAINER}:/opt/joget/wflow/app_plugins/${params.PLUGIN_NAME}.jar
+                            docker restart ${DOCKER_CONTAINER}
+                        """
                     }
                 }
             }
         }
 
-        /*
-                stage('Check Plugin Deployment') {
-                            steps {
-                                script {
-                                    def retries = 5
-                                    def waitTime = 30 // seconds
-                                    def pluginFound = false
-
-                                    for (int i = 0; i < retries; i++) {
-                                        try {
-                                            def response = bat(
-                                                script: """
-                                                    curl -s -u ${JOGET_USERNAME}:${JOGET_PASSWORD} "${JOGET_URL}/web/json/plugin/list?start=0&rows=200"
-                                                """,
-                                                returnStdout: true
-                                            ).trim()
-
-                                            // Debugging: Print the raw response
-                                            echo "Raw response: ${response}"
-
-                                            if (response == null || response.trim().isEmpty()) {
-                                                error "Empty response from server"
-                                            }
-
-                                            // Parse JSON response
-                                            def jsonResponse = readJSON text: response
-
-                                            // Extract plugin IDs
-                                            def pluginIds = jsonResponse.data.collect { it.id }
-
-                                            if (pluginIds.contains(params.PLUGIN_NAME)) {
-                                                echo "Plugin '${params.PLUGIN_NAME}' found in Joget."
-                                                pluginFound = true
-                                                break
-                                            } else {
-                                                echo "Plugin '${params.PLUGIN_NAME}' not found in Joget. Retrying..."
-                                                sleep(waitTime)
-                                            }
-                                        } catch (Exception e) {
-                                            echo "Failed to check plugin deployment: ${e.message}. Retrying..."
-                                            sleep(waitTime)
-                                        }
-                                    }
-
-                                    if (!pluginFound) {
-                                        error "Plugin '${params.PLUGIN_NAME}' not deployed in Joget after multiple retries."
-                                    }
-                                }
-                            }
-                        }
-                    */
-
         stage('Run UI Tests') {
             steps {
                 script {
+                    currentBuild.description = "Run UI Tests Stage"
                     bat "mvn clean test -f ui-tests/pom.xml -Dtest=${params.PLUGIN_NAME}"
                 }
             }
@@ -173,6 +109,9 @@ pipeline {
 
         stage('Archive Artifacts') {
             steps {
+                script {
+                    currentBuild.description = "Archive Artifacts Stage"
+                }
                 archiveArtifacts artifacts: "${params.PLUGIN_NAME}/target/*.jar", allowEmptyArchive: true
             }
         }
@@ -185,30 +124,37 @@ pipeline {
                 echo 'This will always run'
             }
         }
+
         success {
             script {
-                echo 'This will run only if the pipeline succeeds'
-                emailext to: "${NOTIFY_EMAIL}",
+                def successMessage = """
+                Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}
+                Last Executed Stage: ${currentBuild.description}
+                Please check the build details for more information.
+                """
+
+                emailext(
+                    to: "${NOTIFY_EMAIL}",
                     subject: "Jenkins Build Success: ${currentBuild.fullDisplayName}",
-                    body: "The build was successful! Build number: ${currentBuild.number}"
+                    body: successMessage
+                )
             }
         }
-        failure {
-        script {
-            def buildStage = currentBuild.currentResult
-            def failureMessage = "The build failed at stage: ${currentBuild.getBuildVariables()['BUILD_STAGE']} \n"
-            failureMessage += "Error details: ${currentBuild.description}"
 
-            emailext(
-                subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                The build failed at stage: ${currentBuild.getBuildVariables()['BUILD_STAGE']} 
-                Error details: ${currentBuild.description}
-                Please check the logs for more details.
-                """,
-                to: 'oussama.hamaied@hotmail.fr',
-                cc: 'oussama.hamaied@gmail.com'
-            )
+        failure {
+            script {
+                def failureMessage = """
+                Build Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}
+                Failed Stage: ${currentBuild.description}
+                Please check the Jenkins logs for more details.
+                """
+
+                emailext(
+                    to: "${NOTIFY_EMAIL}",
+                    subject: "Jenkins Build Failure: ${currentBuild.fullDisplayName}",
+                    body: failureMessage
+                )
+            }
         }
-    }}
+    }
 }
