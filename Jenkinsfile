@@ -194,21 +194,12 @@ pipeline {
             }
         }
         failure {
-        script {
-            def buildStage = currentBuild.currentResult
-            def failureMessage = "The build failed at stage: ${currentBuild.getBuildVariables()['BUILD_STAGE']} \n"
-            failureMessage += "Error details: ${currentBuild.description}"
-
-            emailext(
-                subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                The build failed at stage: ${currentBuild.getBuildVariables()['BUILD_STAGE']} 
-                Error details: ${currentBuild.description}
-                Please check the logs for more details.
-                """,
-                to: 'oussama.hamaied@hotmail.fr',
-                cc: 'oussama.hamaied@gmail.com'
-            )
+            script {
+                echo 'This will run only if the pipeline fails'
+                emailext to: "${NOTIFY_EMAIL}",
+                    subject: "Jenkins Build Failed: ${currentBuild.fullDisplayName}",
+                    body: "The build failed. Build number: ${currentBuild.number}"
+            }
         }
     }
 }
